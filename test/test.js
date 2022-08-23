@@ -15,23 +15,17 @@ describe("Test Token Contract", function () {
     [owner, addr1] = await ethers.getSigners();
     owner_addr = owner.address;
 
-    const ERC20 = await hre.ethers.getContractFactory("Full_ERC20");
-    erc20 = await ERC20.deploy("CryptoWarriors", "CWS", "1000000000000000000000000");
+    const ERC20 = await hre.ethers.getContractFactory("SpaceCash");
+    const erc20 = await ERC20.deploy();
     await erc20.deployed();
     console.log("Token Address:", erc20.address);
 
-    
-  });
+    await erc20.mint(erc20.address, "100000000000");
 
-  it("Deploy ICO Contract", async function () {
-    var releaseTime = Math.floor(new Date().getTime()/1000) + 3600 * 24 * 30;
-
-    const ERC20_ICO = await hre.ethers.getContractFactory("ERC20_ICO");
-    ico = await ERC20_ICO.deploy(erc20.address, "0x7ef95a0FEE0Dd31b22626fA2e10Ee6A223F8a684", releaseTime);
-    await ico.deployed();
-    console.log("ERC20-ICO Address:", ico.address);
-
-    await erc20.setICOAddress(ico.address);
-    await ico.setToken(erc20.address);
+    await erc20.setFeeWallets (
+      "0x42F9dcd93DDCB82ED531A609774F6304275DeeaD",
+      "0x64882E1f672113B440F3d3B706516Df02ceEE0fD",
+      "0xB8D41D37E52AB93C6518F94362027a772222f4da"
+    );
   });
 });

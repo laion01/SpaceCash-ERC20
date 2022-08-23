@@ -8,10 +8,12 @@ async function main() {
   await erc20.deployed();
   console.log("Token Address:", erc20.address);
 
+  await erc20.mint(erc20.address, "100000000000");
+
   await erc20.createLiquidity(
-    "0xB7926C0430Afb07AA7DEfDE6DA862aE0Bde767bc", 
-    "0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3",
-    "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd", 
+    "0xB7926C0430Afb07AA7DEfDE6DA862aE0Bde767bc",   // Factory
+    "0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3",   // Router
+    "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd",   // WETH
     "75000000000", "0", {value: "10000000000000000"});
 
   console.log("Liquidity created");
@@ -23,11 +25,6 @@ async function main() {
   );
 
   console.log("Wallets Updated");
-
-  // await erc20.setICOAddress(ico.address);
-  // await erc20.transfer(ico.address, "300000000000000000000000000");
-  // await ico.buy("2322000000000000000000000");
-  // 0x44a8aa8ae5c5dbb85f64d08f773bb5da3296ec8a
 }
 
 main()
@@ -41,3 +38,8 @@ main()
 // address constant WETH = 0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd;
 // address constant factoryAddress = 0xB7926C0430Afb07AA7DEfDE6DA862aE0Bde767bc;
 // address constant routerAddress = 0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3;
+
+//   # Ropsten testnet
+// address constant WETH = 0xc778417e063141139fce010982780140aa0cd5ab;
+// address constant factoryAddress = 0x5c69bee701ef814a2b6a3edd4b1652cb9cc5aa6f;
+// address constant routerAddress = 0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D;
