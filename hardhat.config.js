@@ -16,7 +16,7 @@ task("accounts", "Prints the list of accounts", async () => {
  */
 
 module.exports = {
-  defaultNetwork: "testbsc",
+  defaultNetwork: "hardhat",
   networks: {
     localhost: {
       url: "http://127.0.0.1:8545"
@@ -25,6 +25,11 @@ module.exports = {
     },
     testbsc: {
       url: `https://data-seed-prebsc-2-s2.binance.org:8545`,
+      accounts: {mnemonic: mnemonic},
+    },
+    ropsten: {
+      // url: `https://rpc.ankr.com/eth_ropsten/E4VXN2H51KZXWHSRAZHCZ5AQZE2J5JRP5G`,
+      url: 'https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161',
       accounts: {mnemonic: mnemonic},
     },
     mainbsc: {
@@ -51,6 +56,6 @@ module.exports = {
     timeout: 20000
   },
   etherscan: {
-    apiKey: "NFXES6PDMHSHKXWBBVIXB5BYICPT5UNB9D"
+    apiKey: "E4VXN2H51KZXWHSRAZHCZ5AQZE2J5JRP5G"
   }
 };

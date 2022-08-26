@@ -8,21 +8,15 @@ async function main() {
   await erc20.deployed();
   console.log("Token Address:", erc20.address);
 
-  await erc20.mint(erc20.address, "100000000000");
-
-  await erc20.createLiquidity(
-    "0xB7926C0430Afb07AA7DEfDE6DA862aE0Bde767bc",   // Factory
-    "0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3",   // Router
-    "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd",   // WETH
-    "75000000000", "0", {value: "10000000000000000"});
-
-  console.log("Liquidity created");
+  await erc20.mint("0xA24E6227C1b6A88d3A4891979C9BC90f1E96912A", "100000000000");
 
   await erc20.setFeeWallets (
     "0x42F9dcd93DDCB82ED531A609774F6304275DeeaD",
     "0x64882E1f672113B440F3d3B706516Df02ceEE0fD",
     "0xB8D41D37E52AB93C6518F94362027a772222f4da"
   );
+
+  await erc20.setLpAddress("0xc36442b4a4522e871399cd717abdd847ab11fe88");
 
   console.log("Wallets Updated");
 }
